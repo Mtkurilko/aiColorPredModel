@@ -35,6 +35,7 @@ MIN_DIST = 20
 LR = 1e-3
 N_SUBDIVISIONS = 1024
 
+
 def plot_color_gradients(cmap_category, cmap_list):
     """Plot color gradients for visualization."""
     nrows = len(cmap_list)
@@ -56,6 +57,7 @@ def plot_color_gradients(cmap_category, cmap_list):
 
     fig.show()
 
+
 def gen_color():
     """Generate a random color and its corresponding color spaces."""
     hsvcolor = (np.random.rand(3) * np.array([360, 1, 1])).astype(np.float32).reshape(1, 1, 3)
@@ -65,6 +67,7 @@ def gen_color():
         (hsvcolor.squeeze() / np.array([360, 1, 1])).tolist() + rgbcolor.squeeze().tolist() + (
                     labcolor.squeeze() / np.array([100, 256, 256]) + np.array([0, 0.5, 0.5])).tolist())
 
+
 def get_color(r, g, b):
     """Convert RGB color to different color spaces and return as tensor."""
     rgbcolor = np.array([r, g, b]).astype(np.float32).reshape(1, 1, 3)
@@ -72,6 +75,7 @@ def get_color(r, g, b):
     labcolor = cv2.cvtColor(rgbcolor, cv2.COLOR_RGB2LAB)
     return pyt.tensor((hsvcolor.squeeze() / np.array([360, 1, 1])).tolist() + rgbcolor.squeeze().tolist() + (
                 labcolor.squeeze() / np.array([100, 256, 256]) + np.array([0, 0.5, 0.5])).tolist(), dtype=pyt.float32)
+
 
 class ColorGuesser(nn.Module):
     def __init__(self, mid_layers):
@@ -86,6 +90,7 @@ class ColorGuesser(nn.Module):
 
     def forward(self, x):
         return self.model(x)
+
 
 class ColorGuesserManager:
     def __init__(self):
@@ -183,6 +188,7 @@ class ColorGuesserManager:
 
         return np.array(unpacked_colors) / 255, np.array(rlist) / 255, np.array(glist) / 255, np.array(blist) / 255
 
+
 class ColorChoice(QWidget):
     def __init__(self):
         super().__init__()
@@ -236,10 +242,6 @@ class ColorChoice(QWidget):
         self.load_button.clicked.connect(self.load_clicked)
         save_load_layout.addWidget(self.load_button)
 
-        self.load_data_button = QPushButton("Load Data")
-        self.load_data_button.clicked.connect(self.load_data_clicked)
-        save_load_layout.addWidget(self.load_data_button)
-
         layout.addLayout(save_load_layout)
         self.setLayout(layout)
         self.setMinimumSize(800, 250)
@@ -267,22 +269,21 @@ class ColorChoice(QWidget):
             self.Guesser.model.load_state_dict(pyt.load(path + "model.pt"))
             self.Guesser.optim.load_state_dict(pyt.load(path + "optim.pt"))
             self.Guesser.data = pyt.load(path + "data.pt")
-        except FileNotFoundError:
-            print("No model.pt found")
-
-    def load_data_clicked(self):
-        path = os.path.join(self.path, self.name_text.text())
-        self.Guesser = ColorGuesserManager()
-        self.Guesser.data = pyt.load(path + "data.pt")
-        self.stats_box.setText(self.Guesser.train_loop(self.Guesser.data))
+            self.stats_box.setText("Model and data loaded successfully.")
+        except Exception as e:
+            self.stats_box.setText(f"Error: {str(e)}")
 
     def eval_clicked(self):
-        c, r, g, b = self.Guesser.sort_colors()
-        plot_color_gradients("Color Preferences:", [["Overall", c], ["Red", r], ["Green", g], ["Blue", b]])
+        try:
+            c, r, g, b = self.Guesser.sort_colors()
+            plot_color_gradients("Color Preferences:", [["Overall", c], ["Red", r], ["Green", g], ["Blue", b]])
+        except Exception as e:
+            self.stats_box.setText(f"Error: {str(e)}")
 
     def retrain_clicked(self):
         result = self.Guesser.train_loop(self.Guesser.data)
         self.stats_box.setText(result)
+
 
 if __name__ == '__main__':
     app = QApplication([])
