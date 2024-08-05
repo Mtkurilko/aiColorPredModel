@@ -1,4 +1,5 @@
-MAIN FILE - myversion.py (original_colors is original proto)
+MAIN FILE - DESKTOP my_version.py (original_colors is original proto)
+WEB - web.py
 
 
 Use to find a spectrum of your favorite colors and apply to real world scenarios
