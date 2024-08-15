@@ -299,7 +299,7 @@ class ColorChoice(QWidget):
         self.stats_box.setText(result)
 
 
-class HtmlWindow(QMainWindow):
+class HtmlWindow(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Visualizer")
@@ -311,10 +311,9 @@ class HtmlWindow(QMainWindow):
 
         layout = QVBoxLayout()
         layout.addWidget(self.web_view)
+        self.setLayout(layout)
 
-        container = QWidget()
-        container.setLayout(layout)
-        self.setCentralWidget(container)
+        self.resize(1000, 600)
 
 
 if __name__ == '__main__':
