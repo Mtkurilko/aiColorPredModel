@@ -7,7 +7,6 @@ from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QPu
 from PyQt5.QtGui import QColor
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 from PyQt5.QtCore import QUrl
-from qdarktheme import setup_theme
 import time
 import os
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
@@ -365,6 +364,5 @@ class HtmlWindow(QWidget):
 
 if __name__ == '__main__':
     app = QApplication([])
-    setup_theme("auto")
     window = ColorChoice()
     app.exec_()
