@@ -23,7 +23,6 @@ MIN_DIST = 20
 LR = 1e-3
 N_SUBDIVISIONS = 1024
 
-
 def plot_color_gradients(cmap_category, cmap_list):
     # Create figure and adjust figure height to number of colormaps
     nrows = len(cmap_list)
