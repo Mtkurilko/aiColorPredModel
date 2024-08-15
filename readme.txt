@@ -18,4 +18,4 @@ Goals:
     Code all HTML, CSS, & JAVASCRIPT in VsCode then bring into project
     Add button to PyQt5 interface to open a window to display HTML
     HTML is there in order to show irl examples (walls, outfits, etc)
-    ^ For this used color theory with weighted preference of users colors
+    ^ For this used color theory with weighted preference of user's colors
