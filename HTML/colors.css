@@ -1,7 +1,6 @@
-:root {
-    --color1: rgb(44, 120, 83);
-    --color2: rgb(187, 174, 141);
-    --color3: rgb(244, 148, 21);
-    --color4: rgb(110, 96, 161);
-    --color5: rgb(195, 14, 14);
+:root {--color1: rgb(0, 0, 0, 255);
+--color2: rgb(0, 0, 60, 255);
+--color3: rgb(0, 0, 120, 255);
+--color4: rgb(0, 0, 180, 255);
+--color5: rgb(0, 0, 240, 255);
 }

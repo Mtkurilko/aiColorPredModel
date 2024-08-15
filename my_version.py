@@ -10,6 +10,7 @@ from PyQt5.QtCore import QUrl
 from qdarktheme import setup_theme
 import time
 import os
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.colors import LinearSegmentedColormap
 import matplotlib.pyplot as plt
 
@@ -42,7 +43,7 @@ N_SUBDIVISIONS = 1024
 
 
 def plot_color_gradients(cmap_category, cmap_list):
-    """Plot color gradients for visualization."""
+    """Plot color gradients for visualization in a PyQt5 window."""
     nrows = len(cmap_list)
     figh = 0.35 + 0.15 + (nrows + (nrows - 1) * 0.1) * 0.22
     fig, axs = plt.subplots(nrows=nrows, figsize=(6.4, figh))
@@ -60,7 +61,7 @@ def plot_color_gradients(cmap_category, cmap_list):
     for ax in axs:
         ax.set_axis_off()
 
-    fig.show()
+    return fig
 
 
 def gen_color():
@@ -193,6 +194,26 @@ class ColorGuesserManager:
 
         return np.array(unpacked_colors) / 255, np.array(rlist) / 255, np.array(glist) / 255, np.array(blist) / 255
 
+    def get_top_colors(self):
+        start_time = time.time()
+
+        # Create a list of colors with RGB and their color names or values
+        colors = [([r * 15, g * 15, b * 15], get_color(r * 15, g * 15, b * 15)) for r in range(18) for g in range(18)
+                  for b in range(18)]
+
+        # Sort colors based on favorability
+        self.csort(colors, 0, len(colors) - 1)
+
+        elapsed_time = time.time() - start_time
+        print(f"Sorted list of colors in {elapsed_time:.2f} seconds!")
+
+        unpacked_colors = [(*rgb, 255) for rgb, _ in colors]
+
+        step = 4
+        top_5_colors = unpacked_colors[::step][:5]
+
+        return top_5_colors
+
 
 class ColorChoice(QWidget):
     def __init__(self):
@@ -285,18 +306,44 @@ class ColorChoice(QWidget):
     def eval_clicked(self):
         try:
             c, r, g, b = self.Guesser.sort_colors()
-            plot_color_gradients("Color Preferences:", [["Overall", c], ["Red", r], ["Green", g], ["Blue", b]])
+            fig = plot_color_gradients("Color Preferences:", [["Overall", c], ["Red", r], ["Green", g], ["Blue", b]])
+            self.plot_window = PlotWindow(fig)
+            self.plot_window.show()
         except Exception as e:
             self.stats_box.setText(f"Error: {str(e)}")
 
     def open_html_window(self):
         # SET COLOR HERE (I think?)
+        top5 = self.Guesser.get_top_colors()
+        with open(os.path.join(os.path.dirname(__file__), 'HTML/colors.css'), "w", encoding="utf-8") as f:
+            f.writelines(''':root {--color1: rgb'''+f'{top5[0]};\n'+'''--color2: rgb''' + f'{top5[1]};\n'+
+                         '''--color3: rgb''' + f'{top5[2]};\n'+
+                         '''--color4: rgb''' + f'{top5[3]};\n'+'''--color5: rgb''' + f'{top5[4]};\n'+'}')
+
         self.html_window = HtmlWindow()
         self.html_window.show()
 
     def retrain_clicked(self):
         result = self.Guesser.train_loop(self.Guesser.data)
         self.stats_box.setText(result)
+
+
+class MatplotlibWidget(QWidget):
+    def __init__(self, fig):
+        super().__init__()
+        self.canvas = FigureCanvas(fig)
+        layout = QVBoxLayout()
+        layout.addWidget(self.canvas)
+        self.setLayout(layout)
+
+
+class PlotWindow(QMainWindow):
+    def __init__(self, fig):
+        super().__init__()
+        self.setWindowTitle("Color Gradients")
+        self.setGeometry(100, 100, 800, 600)
+        self.widget = MatplotlibWidget(fig)
+        self.setCentralWidget(self.widget)
 
 
 class HtmlWindow(QWidget):
