@@ -11,6 +11,10 @@ import os
 from matplotlib.colors import LinearSegmentedColormap
 import matplotlib.pyplot as plt
 
+'''
+    THIS IS NOT MAIN FILE FOR TESTING
+'''
+
 MODEL_ARCH = [64, 64, 32, 32, 16, 16, 8, 4]
 OPTIM = pyt.optim.Adam
 LOSS_FN = nn.MSELoss()

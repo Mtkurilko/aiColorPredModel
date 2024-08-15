@@ -1,8 +1,8 @@
-MAIN FILE - DESKTOP my_version.py (original_colors is original proto)
-WEB - web.py
+**MAIN FILE - DESKTOP my_version.py (original_colors is original proto)**
+**WEB - web.py NOT FINISHED**
 
 
-Use to find a spectrum of your favorite colors and apply to real world scenarios
+*Use to find a spectrum of your favorite colors and visualize it in real world scenarios*
 
 
 Goals:
@@ -15,5 +15,7 @@ Goals:
     Added some exception handling for buttons
     Changed to %
 
-    Add button to PyQt5 interface in order to show irl examples (walls, outfits, etc)
+    Code all HTML, CSS, & JAVASCRIPT in VsCode then bring into project
+    Add button to PyQt5 interface to open a window to display HTML
+    HTML is there in order to show irl examples (walls, outfits, etc)
     ^ For this used color theory with weighted preference of users colors

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test Best Color Selecter</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="colors.css" />
+    <script src="index.js"></script>
+    <style>
+        .hidden {
+            visibility: hidden;
+        }
+        .visible {
+            visibility: visible;
+        }
+        #canvas {
+            visibility: hidden;
+        }
+    </style>
+  </head>
+  <body class="body">
+    <div id="everything">
+      <h1 id="title">Visualize Your Favorite Colors</h1>
+      <br />
+      <div id="widget">
+        <div
+          class="color-display"
+          id="color-display1"
+          style="background-color: lightblue"
+        >
+          <p class="color-value" id="color-value1">Demo Clr</p>
+        </div>
+        <div
+          class="color-display"
+          id="color-display2"
+          style="background-color: rgb(118, 169, 140)"
+        >
+          <p class="color-value" id="color-value2">Demo Clr</p>
+        </div>
+        <div
+          class="color-display"
+          id="color-display3"
+          style="background-color: rgb(73, 101, 111)"
+        >
+          <p class="color-value" id="color-value3">Demo Clr</p>
+        </div>
+        <canvas class="" id="canvas"></canvas>
+        <div id="color-select">
+          <button id="color1" onclick="changeColor(document,event)"></button
+          ><br />
+          <button id="color2" onclick="changeColor(document,event)"></button
+          ><br />
+          <button id="color3" onclick="changeColor(document,event)"></button
+          ><br />
+          <button id="color4" onclick="changeColor(document,event)"></button
+          ><br />
+          <button id="color5" onclick="changeColor(document,event)"></button>
+        </div>
+      </div>
+      <div id="options">
+        <button class="options" id="p" onclick="changeMethod(document,event)">Color Pallete</button>
+        <button class="options" id="ro" onclick="changeMethod(document,event)">Room</button>
+        <button class="options" id="sh" onclick="changeMethod(document,event)">Shirt</button>
+        <button class="options" id="sho" onclick="changeMethod(document,event)">Shoes</button>
+      </div>
+    </div>
+  </body>
+</html>

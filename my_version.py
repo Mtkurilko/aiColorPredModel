@@ -2,8 +2,11 @@ import cv2
 import torch as pyt
 import torch.nn as nn
 import numpy as np
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QTextEdit, QLineEdit, QSizePolicy
+from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QTextEdit, QLineEdit, \
+    QSizePolicy, QMainWindow
 from PyQt5.QtGui import QColor
+from PyQt5.QtWebEngineWidgets import QWebEngineView
+from PyQt5.QtCore import QUrl
 from qdarktheme import setup_theme
 import time
 import os
@@ -11,7 +14,7 @@ from matplotlib.colors import LinearSegmentedColormap
 import matplotlib.pyplot as plt
 
 '''
-MAIN FILE - Introduced Changes from original_colors.py
+***MAIN(RUN) FILE*** - Introduced Changes from original_colors.py
 Goals:
     Removed Unused Imports: Cleaned up the import statements.
     Improved Function Docstrings and Comments: I like readability for future lol.
@@ -21,8 +24,10 @@ Goals:
     Improved Random Choice Handling: Used replace=False to avoid unnecessary checks.
     Added some exception handling for buttons
     Changed to %
-    
-    Add button to PyQt5 interface in order to show irl examples (walls, outfits, etc)
+
+    Code all HTML, CSS, & JAVASCRIPT in VsCode then bring into project
+    Add button to PyQt5 interface to open a window to display HTML
+    HTML is there in order to show irl examples (walls, outfits, etc)
     ^ For this used color theory with weighted preference of users colors
 '''
 
@@ -224,6 +229,10 @@ class ColorChoice(QWidget):
         self.eval_button.clicked.connect(self.eval_clicked)
         eval_retrain_layout.addWidget(self.eval_button)
 
+        self.open_window_button = QPushButton("Open Visualizer")
+        self.open_window_button.clicked.connect(self.open_html_window)
+        eval_retrain_layout.addWidget(self.open_window_button)
+
         self.retrain_button = QPushButton("Retrain")
         self.retrain_button.clicked.connect(self.retrain_clicked)
         eval_retrain_layout.addWidget(self.retrain_button)
@@ -280,9 +289,32 @@ class ColorChoice(QWidget):
         except Exception as e:
             self.stats_box.setText(f"Error: {str(e)}")
 
+    def open_html_window(self):
+        # SET COLOR HERE (I think?)
+        self.html_window = HtmlWindow()
+        self.html_window.show()
+
     def retrain_clicked(self):
         result = self.Guesser.train_loop(self.Guesser.data)
         self.stats_box.setText(result)
+
+
+class HtmlWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Visualizer")
+
+        self.web_view = QWebEngineView()
+
+        html_file = os.path.join(os.path.dirname(__file__), 'HTML/index.html')
+        self.web_view.setUrl(QUrl.fromLocalFile(html_file))
+
+        layout = QVBoxLayout()
+        layout.addWidget(self.web_view)
+
+        container = QWidget()
+        container.setLayout(layout)
+        self.setCentralWidget(container)
 
 
 if __name__ == '__main__':

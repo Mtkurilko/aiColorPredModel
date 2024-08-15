@@ -1,0 +1,172 @@
+@import url("colors.css");
+
+.body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: #676565; /* Fallback color */
+    background-image:  url('texture.png');
+    background-repeat: repeat;
+    background-size: auto;
+}
+
+#everything {
+    width: 100vw;
+    height: 100vh;
+}
+
+#widget {
+    margin-top:6vh;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    scale: 1.5;
+    margin-left: 5%;
+}
+
+#title {
+    color: rgb(255, 255, 255);
+    background-color: #b8b5b53a;
+    border-radius: 0%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3vw;
+    margin-left: 25%;
+    right: 2vw;
+    width: 50%;
+    height: 10vh;
+    overflow: hidden; /* To prevent content overflow */
+    filter: drop-shadow(rgb(0, 0, 0) 2px 2px 1px)
+}
+
+#options {
+    margin-top: 14vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 4vw;
+    scale:1.5;
+}
+
+.options {
+    font-size: 1vw;
+    border-radius: 10%;
+    background-color: #b8b5b57a;
+    margin: 0.5vw;
+    padding-left: 0.5vw;
+    padding-right: 0.5vw;
+    padding-top: 0.25vw;
+    padding-bottom: 0.25vw;
+}
+
+.options:hover {
+    font-size: 1vw;
+    background-color: #645c4784;
+}
+
+.color-value {
+    opacity: 0.5;
+    color: rgb(255, 255, 255);
+    background-color: #b8b5b53a;
+    border-radius: 0%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85vw;
+    position: absolute;
+    bottom: 0vh; /* Distance from the bottom of the container */
+    left: 50%;
+    transform: translateX(-50%);
+    box-sizing: border-box;
+    width: 40%;
+    height: 2vh;
+    overflow: hidden; /* To prevent content overflow */
+    filter: drop-shadow(rgb(0, 0, 0) 2px 2px 1px)
+}
+
+.color-display {
+    width: 10vw;
+    aspect-ratio: 1/2;
+    float: left;
+    border-radius: 20px;
+    margin-right: 5px;
+    filter: drop-shadow(gray 1px 1px 4px)
+}
+
+#canvas {
+    width: 30vw;
+    position: absolute;
+    left: 48%;
+    transform: translateX(-50%);
+    float: left;
+    border-radius: 20px;
+    margin-right: 5px;
+    margin-top: 1vh;
+    filter: drop-shadow(gray 1px 1px 4px)
+}
+
+#color-display3 {
+    margin-right: 20px;
+}
+
+#color1 {
+    padding: 2vh;
+    border-radius: 50%;
+    background-color: var(--color1);
+    border-color: rgba(216, 213, 213, 0.551);
+    margin: 1vh;
+    filter: drop-shadow(1px 1px 2px)
+}
+#color1:hover {
+    opacity: 0.95;
+    border-color: rgba(134, 119, 87, 0.551);
+}
+#color2 {
+    padding: 2vh;
+    border-radius: 50%;
+    background-color: var(--color2);
+    border-color: rgba(216, 213, 213, 0.551);
+    margin: 1vh;
+    filter: drop-shadow(1px 1px 2px)
+}
+#color2:hover {
+    opacity: 0.95;
+    border-color: rgba(134, 119, 87, 0.551);
+}
+#color3 {
+    padding: 2vh;
+    border-radius: 50%;
+    background-color: var(--color3);
+    border-color: rgba(216, 213, 213, 0.551);
+    margin: 1vh;
+    filter: drop-shadow(1px 1px 2px)
+}
+#color3:hover {
+    opacity: 0.95;
+    border-color: rgba(134, 119, 87, 0.551);
+}
+#color4 {
+    padding: 2vh;
+    border-radius: 50%;
+    background-color: var(--color4);
+    border-color: rgba(216, 213, 213, 0.551);
+    margin: 1vh;
+    filter: drop-shadow(1px 1px 2px)
+}
+#color4:hover {
+    opacity: 0.95;
+    border-color: rgba(134, 119, 87, 0.551);
+}
+#color5 {
+    padding: 2vh;
+    border-radius: 50%;
+    background-color: var(--color5);
+    border-color: rgba(216, 213, 213, 0.551);
+    margin: 1vh;
+    filter: drop-shadow(1px 1px 2px)
+}
+#color5:hover {
+    opacity: 0.95;
+    border-color: rgba(134, 119, 87, 0.551);
+}
