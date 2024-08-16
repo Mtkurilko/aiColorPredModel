@@ -1,4 +1,4 @@
-**MAIN FILE - DESKTOP my_version.py (original_colors is original proto)**
+**MAIN FILE - DESKTOP my_version.py (original_colors is original proto backend)**
 **WEB - web.py NOT FINISHED**
 
 
