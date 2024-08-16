@@ -32,4 +32,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: build-output
-        path: dist/your_script.exe
+        path: dist/my_version.exe
