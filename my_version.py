@@ -12,6 +12,7 @@ import os
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.colors import LinearSegmentedColormap
 import matplotlib.pyplot as plt
+from qdarktheme import setup_theme
 
 '''
 ***MAIN(RUN) FILE*** - Introduced Changes from original_colors.py
@@ -219,7 +220,17 @@ class ColorChoice(QWidget):
         super().__init__()
         self.Guesser = ColorGuesserManager()
         self.initUI()
-        self.path = os.path.join(os.path.dirname(__file__), "models")
+        try:
+            foldCheck = os.path.join(os.path.dirname(__file__), "models")
+            if not os.path.exists(foldCheck):
+                os.makedirs(foldCheck)
+                print(f"Created directory: {foldCheck}")
+            else:
+                print(f"Directory already exists: {foldCheck}")
+
+            self.path = foldCheck
+        except Exception as e:
+            print(f"An error occurred: {e}")
 
     def initUI(self):
         self.setWindowTitle("Color Choice")
@@ -364,5 +375,6 @@ class HtmlWindow(QWidget):
 
 if __name__ == '__main__':
     app = QApplication([])
+    setup_theme("dark")
     window = ColorChoice()
     app.exec_()
