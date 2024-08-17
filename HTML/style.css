@@ -86,12 +86,14 @@
 }
 
 .color-display {
+    position: relative;
+    left: -2.5%;
     height: 40vh;
-    width: 18vw;
+    width: 14vw;
     aspect-ratio: 1/2;
     float: left;
     border-radius: 20px;
-    margin-right: 5px;
+    margin-right: 1%;
     filter: drop-shadow(gray 1px 1px 4px)
 }
 
@@ -109,7 +111,7 @@
 }
 
 #color-display3 {
-    margin-right: 20px;
+    margin-right: 0%;
 }
 
 #color1 {
@@ -171,4 +173,29 @@
 #color5:hover {
     opacity: 0.95;
     border-color: rgba(134, 119, 87, 0.551);
+}
+#colorPick {
+    position: absolute;
+    top: 59%;
+    left: 78%;
+}
+#colorPick:hover {
+    background-color: rgba(0, 131, 255, 0.32);
+}
+#colorPickerContainer {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    padding-left: 4vw;
+    padding-right: 4vw;
+    padding-top: 2vw;
+    padding-bottom: 2vw;
+    transform: translateX(-50%);
+    background-color: rgba(94,104,111,0.7);
+    border-radius: 10%;
+}
+#selectedColor {
+    color: white;
+    position: absolute;
+    left: 2%;
 }

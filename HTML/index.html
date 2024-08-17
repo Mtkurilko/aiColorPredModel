@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="colors.css" />
     <script src="index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5.5.2/dist/iro.min.js"></script>
     <style>
         .hidden {
             visibility: hidden;
@@ -56,6 +57,12 @@
           <button id="color4" onclick="changeColor(document,event)"></button
           ><br />
           <button id="color5" onclick="changeColor(document,event)"></button>
+          <button id="colorPick" onclick="colorPick()">Custom Color</button>
+          <div id="colorPickerContainer" style="display:none;">
+          <div id="colorPicker"></div>
+          <button id="confirmColorButton">Confirm Color</button>
+          </div>
+<p id="selectedColor"></p>
         </div>
       </div>
       <div id="options">

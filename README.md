@@ -8,6 +8,37 @@ This is the core script for visualizing and analyzing color spectra. It includes
 - **Color Spectrum Visualization**: Find a spectrum of your favorite colors and see them applied in real-world scenarios.
 - **Real-World Example Integration**: Visualize how colors would look on walls, outfits, and other objects using HTML/CSS/JavaScript.
 
+## Images
+```html
+<div>
+  <img src="HTML/images/ex1.png" style="display: none;" id="slide1">
+  <img src="HTML/images/ex2.png" style="display: none;" id="slide2">
+  <img src="HTML/images/ex3.png" style="display: none;" id="slide3">
+  <img src="HTML/images/ex4.png" style="display: none;" id="slide4">
+  <img src="HTML/images/ex5.png" style="display: none;" id="slide5">
+  <img src="HTML/images/ex6.png" style="display: none;" id="slide6">
+  <img src="HTML/images/ex7.png" style="display: none;" id="slide7">
+  <img src="HTML/images/ex8.png" style="display: none;" id="slide8">
+   
+</div>
+
+<script>
+  let currentIndex = 0;
+  const slides = document.querySelectorAll('div img');
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.style.display = i === index ? 'block' : 'none';
+    });
+  }
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % slides.length;
+    showSlide(currentIndex);
+  }
+  setInterval(nextSlide, 2000); // Change slide every 2 seconds
+  showSlide(currentIndex);
+</script>
+```
+
 ## Goals
 
 - **Code Cleanup**: Removed unused imports and improved code readability with enhanced docstrings and comments.

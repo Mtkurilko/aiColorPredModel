@@ -12,6 +12,37 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+function changeCSSVariable(variable, value) {
+    document.documentElement.style.setProperty(variable, value);
+}
+
+function colorPick() {
+    var colorPicker = new iro.ColorPicker("#colorPicker", {
+        width: 200,
+        color: "#f00",
+        borderWidth: 1,
+        borderColor: "#fff"
+    });
+
+    document.getElementById('colorPickerContainer').style.display = 'block';
+    document.getElementById('colorPickerContainer').style.position = 'absolute';
+
+    document.getElementById('confirmColorButton').addEventListener('click', function() {
+        var selectedColor = colorPicker.color.rgb;
+        var rgbString = `rgb(${selectedColor.r}, ${selectedColor.g}, ${selectedColor.b})`;
+
+        document.getElementById('selectedColor').innerText = "Selected Color: " + rgbString;
+
+        changeCSSVariable('--color5', rgbString);
+
+        let cont = document.getElementById("colorPicker");
+        while (cont.firstChild) {
+            cont.removeChild(cont.firstChild)
+        }
+        document.getElementById('colorPickerContainer').style.display = 'none';
+    });
+}
+
 function changeColor(doc, event) {
     const stylesheetName = 'colors.css';
     const variableName = `--${event.target.id}`;
@@ -31,6 +62,10 @@ function changeColor(doc, event) {
                 selectColor = rule.style.getPropertyValue(variableName).trim();
                 break;
             }
+        }
+
+        if (variableName === '--color5' && (document.getElementById('selectedColor').innerText !== '')) {
+            selectColor = document.getElementById('selectedColor').innerText;
         }
 
         if (selectColor) {
