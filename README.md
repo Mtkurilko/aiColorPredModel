@@ -5,7 +5,7 @@ This is the core script for visualizing and analyzing color spectra. It includes
 
 ## Features
 
-- **Color Spectrum Visualization**: Find a spectrum of your favorite colors and see them applied in real-world scenarios.
+- **Color Spectrum Visualization**: Pick between colors to train an AI Model to create a spectrum of your favorite colors and see them applied in real-world scenarios.
 - **Real-World Example Integration**: Visualize how colors would look on walls, outfits, and other objects using HTML/CSS/JavaScript.
 
 ## Images
