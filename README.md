@@ -37,4 +37,4 @@ This is the core script for visualizing and analyzing color spectra. It includes
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/Mtkurilko/favoriteColor.git
+   git clone https://github.com/Mtkurilko/aiColorPredModel.git
